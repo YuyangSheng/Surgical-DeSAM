@@ -19,5 +19,8 @@ Please download our pre-trained [Surgical-DeSAM checkpoint](https://drive.google
 
 `python main.py --no_aux_loss --eval --resume './weights/surgical_desam_1024.pth' --endovis_path DATASET_PATH`
 
-
-
+## Results
+The instance segmentation results are shown as below:
+<div align='center'>
+<img src='https://github.com/YuyangSheng/Surgical-DeSAM/blob/main/assets/instance_seg_res.jpg' width=550>
+</div>
