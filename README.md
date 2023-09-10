@@ -1,4 +1,5 @@
 # Surgical-DeSAM
+our model, Surgical-DeSAM, is proposed with an innovative architecture based on transformer, integrating a detection baseline (DETR) and part of a segmentation foundation model (SAM). By decoupling and reengineering these two baselines, our proposed model inherits both capabilities and demonstrates commendable performance on our surgical instrument dataset.
 
 ## Usage
 * First clone the repository locally: `git clone https://github.com/YuyangSheng/Surgical-DeSAM.git`
