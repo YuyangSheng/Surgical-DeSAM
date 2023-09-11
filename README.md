@@ -22,7 +22,7 @@ We trained our model on a single GPU with batch_size=1 and leveraged pre-trained
 The specific training, evaluation, and visualization processes can be seen in `engine_instance_seg.py`.
 
 ## Evaluation
-Please download our pre-trained [Surgical-DeSAM checkpoint](https://drive.google.com/file/d/1qKFfHgJFO9E35ARsnoUWAmMSG8EP52Cn/view?usp=sharing) first and put it under `weights` folder.
+Please download our pre-trained [Surgical-DeSAM checkpoint](https://drive.google.com/file/d/1ffoeEA8rJGPVUOgMTvVr0k1x7esXm3rn/view?usp=sharing) first and put it under `weights` folder.
 
 `python main.py --no_aux_loss --eval --resume './weights/surgical_desam_1024.pth' --endovis_path DATASET_PATH`
 
