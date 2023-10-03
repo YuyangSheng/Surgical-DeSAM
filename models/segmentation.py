@@ -243,18 +243,18 @@ def focal_loss_masks(inputs, targets, num_boxes, alpha: float = 0.25, gamma: flo
 
 # evaluate for segmentation
 def intersection_over_union(pred_masks, target_masks):
-    total_iou = 0.
     pred_masks = (pred_masks > 0.5).float() 
-    if pred_masks.shape[0] == 0:
-        return 0
-    for i in range(pred_masks.shape[0]):
-        pred_mask = np.array(pred_masks[i]).astype(np.uint8)
-        target_mask = np.array(target_masks[i]).astype(np.uint8)
-        intersection = (pred_mask & target_mask).sum()
-        union = (pred_mask | target_mask).sum()
-        iou = intersection.astype(float) / union.astype(float)
-        total_iou += iou
-    mean_iou = total_iou / pred_masks.shape[0]
+    
+    if pred_masks.shape[0] == 0 and target_masks.shape[0] != 0:
+        pred_masks = np.zeros((target_masks.shape[0], target_masks.shape[1]))
+    else:
+    pred_masks = np.array(pred_masks).astype(np.uint8) # Nxwxh
+
+    target_masks = np.array(target_masks).astype(np.uint8)
+    intersection = (pred_masks & target_masks).sum(axis=(1, -1)) # (N, )
+    union = (pred_masks | target_masks).sum(axis=(1, -1)) # (N,)
+    iou = intersection.astype(float) / union.astype(float)
+    mean_iou = np.nanmean(iou)
     return mean_iou
 
 def dice_coefficient(pred_masks, target_masks):
