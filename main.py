@@ -93,7 +93,7 @@ def get_args_parser():
     parser.add_argument('--coco_panoptic_path', type=str)
     parser.add_argument('--remove_difficult', action='store_true')
 
-    parser.add_argument('--output_dir', default='./new_outputs_desam',
+    parser.add_argument('--output_dir', default='./outputs',
                         help='path where to save, empty for no saving')
     parser.add_argument('--device', default='cuda:1',
                         help='device to use for training / testing')
@@ -134,6 +134,8 @@ def main(args):
     print(args)
 
     device = torch.device(args.device)
+    if os.path.exists(args.output_dir) is False:
+        os.mkdir(args.output_dir)
 
     # fix the seed for reproducibility
     seed = args.seed + utils.get_rank()
@@ -230,26 +232,26 @@ def main(args):
     if args.eval:
         epoch = args.start_epoch
 
-        for i in range(61):
-            model_path = f'./new_outputs_desam/ckpt{i:04}.pth'
-            checkpoint = torch.load(model_path, map_location='cpu')
-            model_without_ddp.load_state_dict(checkpoint['model'])
-            epoch = i
+        # for i in range(61):
+        #     model_path = f'./new_outputs_desam/ckpt{i:04}.pth'
+        #     checkpoint = torch.load(model_path, map_location='cpu')
+        #     model_without_ddp.load_state_dict(checkpoint['model'])
+        #     epoch = i
 
-            test_stats, coco_evaluator = evaluate(model_without_ddp, seg_model, val_criterion, 
+        test_stats, coco_evaluator = evaluate(model_without_ddp, seg_model, val_criterion, 
                                                     postprocessors, data_loader_val, base_ds, 
                                                     device, args.output_dir, epoch, args.plot)
-            test_log_stats = {**{f'test_{k}': v for k, v in test_stats.items()},
+        test_log_stats = {**{f'test_{k}': v for k, v in test_stats.items()},
                             'epoch': epoch,
                             'n_parameters': n_parameters}
 
-            if args.output_dir and utils.is_main_process():
-                    with (output_dir / "test_log.txt").open("a") as f:
-                        f.write(json.dumps(test_log_stats) + "\n")
+        if args.output_dir and utils.is_main_process():
+                with (output_dir / "test_log.txt").open("a") as f:
+                    f.write(json.dumps(test_log_stats) + "\n")
 
-            if args.output_dir:
-                    utils.save_on_master(coco_evaluator.coco_eval["bbox"].eval, output_dir / "eval.pth")
-            return
+        if args.output_dir:
+                utils.save_on_master(coco_evaluator.coco_eval["bbox"].eval, output_dir / "eval.pth")
+        return
     
     print("Start training")
     start_time = time.time()
