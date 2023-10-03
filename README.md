@@ -1,7 +1,7 @@
 # Surgical-DeSAM
 This is the official repository of Surgical-DeSAM, which is proposed with an innovative architecture based on transformer, integrating a detection baseline (DETR) and part of a segmentation foundation model (SAM). By decoupling and reengineering these two baselines, our proposed model inherits both capabilities and demonstrates commendable performance on our surgical instrument dataset.
 
-**Note that before using different dataset for training or validation, please choose the corresponding `CLASSES` variable in `engine_instance_seg.py` line 37-40.**
+**Note that before using different dataset for training or validation, please choose the corresponding `CLASSES` variable in `engine_instance_seg.py` from line 37 to 40. Similarly, choose the correct `INSTRUMENT_CLASSES` in `datasets/coco.py` frome line 434 to 437.**
 ## For endovis 2017 dataset
 ### Usage
 * First clone the repository locally: `git clone https://github.com/YuyangSheng/Surgical-DeSAM.git`
