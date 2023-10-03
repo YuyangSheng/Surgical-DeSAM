@@ -344,12 +344,12 @@ class EndovisDataset(Dataset):
             if self.dataset_name == 'endovis17':
                 return 225 * 8
             elif self.dataset_name == 'endovis18':
-                return 1438
+                return 1220
         elif self.mode == 'val':
             if self.dataset_name == 'endovis17':
                 return 300 + 285
             elif self.dataset_name == 'endovis18':
-                return 569
+                return 548
             
 def build(image_set, args):
     # root = Path(args.coco_path)
