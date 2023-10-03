@@ -41,10 +41,11 @@ The instance segmentation results are shown as below:
 * To train the detection model, please follow the command:
 
   `python -m torch.distributed.launch --nproc_per_node=1 --use_env main.py --endovis_path ./endovis18 --sam False --plot False` (`plot` parameter here is used to determine whether to visualize the results and the visualization function can be found in `'plot_results_gt'` function in `engine_instance_seg.py` file.) Then save the best checkpoint to `PATH_TO_DETR_WEIGHTS`.
-* Next, using well-trained detection baseline to further train the Surgical-DeSAM model. **Please note that in our experiment, batch_size can only be 1.** 
+* Next, using well-trained detection baseline to further train the Surgical-DeSAM model. **Please note that in our experiment, batch_size can only be 1.**
 
   Copy the command: `python -m torch.distributed.launch --nproc_per_node=1 --use_env main.py --endovis_path ./endovis18 --detr_weights PATH_TO_DETR_WEIGHTS --sam True --plot False`
   (The visualization function can be found in the `'plot_instance_seg'` function in the `engine_instance_seg.py` file.)
+  
 ### Instructions for evaluation
 To evaluate the detection model only, please copy the command:
 
@@ -53,5 +54,7 @@ To evaluate the detection model only, please copy the command:
 To evaluate Surgical-DeSAM using pre-trained weights, follow the command:
 
 `python main.py --no_aux_loss --eval --resume PATH_TO_SurgicalDESAM_WEIGHTS --sam True`
+
+(To get the IoU results for each instrument class, please change the second `target_labels` parameter to the specific label number (e.g., 0) in `engine_instance_seg.py` in line 321.)
 
 
