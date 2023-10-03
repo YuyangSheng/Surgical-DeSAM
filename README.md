@@ -37,7 +37,7 @@ The instance segmentation results are shown as below:
 ## For endovis 2018 dataset
 ### Instructions for training
 * First clone the repository locally: `git clone https://github.com/YuyangSheng/Surgical-DeSAM.git`
-* Then download the EndoVis2018 dataset.
+* Then download the [EndoVis2018 dataset](https://drive.google.com/drive/folders/12kvir0wm1JyzIplOtiM9JszZNJzV65Vw?usp=sharing).
 * To train the detection model, please follow the command:
 
   `python -m torch.distributed.launch --nproc_per_node=1 --use_env main.py --endovis_path ./endovis18 --sam False --plot False` (`plot` parameter here is used to determine whether to visualize the results and the visualization function can be found in `'plot_results_gt'` function in `engine_instance_seg.py` file.) Then save the best checkpoint to `PATH_TO_DETR_WEIGHTS`.
