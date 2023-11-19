@@ -5,7 +5,7 @@ This is the official repository of Surgical-DeSAM, which is proposed with an inn
 ## For endovis 2017 dataset
 ### Usage
 * First clone the repository locally: `git clone https://github.com/YuyangSheng/Surgical-DeSAM.git`
-* Then download the EndoVis 17 dataset first and put it under `endovis17` folder. (If you want to further change the dataset class, please check `datasets/coco.py`.)
+* Then download the [EndoVis 17 dataset](https://drive.google.com/file/d/15fKALb-2S2gyveM5aJfJenjNAkAOr6qo/view) first and put it under `endovis17` folder. (If you want to further change the dataset class, please check `datasets/coco.py`.)
 * Download well-trained [DETR checkpoint](https://drive.google.com/file/d/1RuqI5cjOgLdKhzQxPOJmlCP0PxsXtxde/view?usp=sharing) and put it under `weights` folder (the pre-trained weights for object detection).
 * Please create an `outputs` folder. The training log, evaluation results and visualization will be generated to this folder.
 
