@@ -48,6 +48,8 @@ The instance segmentation results are shown as below:
   (The visualization function can be found in the `'plot_instance_seg'` function in the `engine_instance_seg.py` file.)
   
 ### Instructions for evaluation
+Please download the well-trained [DETR](https://drive.google.com/file/d/1XM3N2GriFEixZV8wUM9Is305g7AGKq37/view?usp=sharing) and [Surgical-DeSAM](https://drive.google.com/file/d/1XM3N2GriFEixZV8wUM9Is305g7AGKq37/view?usp=sharing) weights first.
+
 To evaluate the detection model only, please copy the command:
 
 `python main.py --no_aux_loss --eval --resume PATH_TO_DETR_WEIGHTS --sam False`
