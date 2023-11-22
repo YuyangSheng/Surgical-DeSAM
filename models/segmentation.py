@@ -263,10 +263,10 @@ def dice_coefficient(pred_masks, target_masks):
     total_dice_loss = 0.
     pred_masks = (pred_masks > 0.5).float()
     for i in range(pred_masks.shape[0]):
-        pred_mask = torch.sigmoid(pred_masks[i])
+        pred_mask = pred_masks[i]
         target_mask = target_masks[i]
         intersection = (pred_mask * target_mask).sum()
-        dice = 1 - (2.0 * intersection + smooth) / (pred_mask.sum() + target_mask.sum() + smooth)
+        dice = (2.0 * intersection + smooth) / (pred_mask.sum() + target_mask.sum() + smooth)
         total_dice += dice
         total_dice_loss += (1-dice)
 
