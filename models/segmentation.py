@@ -248,7 +248,7 @@ def intersection_over_union(pred_masks, target_masks):
     if pred_masks.shape[0] == 0 and target_masks.shape[0] != 0:
         pred_masks = np.zeros((target_masks.shape[0], target_masks.shape[1]))
     else:
-    pred_masks = np.array(pred_masks).astype(np.uint8) # Nxwxh
+        pred_masks = np.array(pred_masks).astype(np.uint8) # Nxwxh
 
     target_masks = np.array(target_masks).astype(np.uint8)
     intersection = (pred_masks & target_masks).sum(axis=(1, -1)) # (N, )
