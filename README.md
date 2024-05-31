@@ -65,4 +65,16 @@ To evaluate Surgical-DeSAM using pre-trained weights, follow the command:
 
 (To get the IoU results for each instrument class, please change the second `target_labels` parameter to the specific label number (e.g., 0) in `engine_instance_seg.py` in line 321.)
 
+## Citation
+If you use this code for your research, please cite our paper.
 
+```
+@article{sheng2024surgical,
+  title={Surgical-DeSAM: decoupling SAM for instrument segmentation in robotic surgery},
+  author={Sheng, Yuyang and Bano, Sophia and Clarkson, Matthew J and Islam, Mobarakol},
+  journal={International Journal of Computer Assisted Radiology and Surgery},
+  pages={1--5},
+  year={2024},
+  publisher={Springer}
+}
+```
